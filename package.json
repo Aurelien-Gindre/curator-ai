@@ -31,10 +31,17 @@
     "dotenv": "^16.3.1",
     "jsdom": "^24.0.0",
     "openai": "^4.24.3",
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.6",
+    "express": "^4.21.1",
+    "postmark": "^4.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   },
   "scripts": {
     "build": "npx tsc",
-    "start": "ts-node ./src/cli.ts"
+    "start": "ts-node ./src/cli.ts",
+    "startConv" : "ts-node ./src/conversational_agent/server.ts"
   }
 }
