@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@mozilla/readability": "^0.5.0",
+    "@supabase/supabase-js": "^2.45.6",
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.6",
     "chalk": "^4.1.2",
@@ -43,6 +44,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "ts-node ./src/cli.ts",
-    "startConv": "ts-node ./src/conversational_agent/server.ts"
+    "startConv": "ts-node ./src/conversational_agent/server.ts",
+    "updateWebhook": "ts-node ./src/conversational_agent/updateWebhook.ts"
   }
 }
