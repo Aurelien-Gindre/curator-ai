@@ -45,6 +45,7 @@
     "build": "npx tsc",
     "start": "ts-node ./src/cli.ts",
     "startConv": "ts-node ./src/conversational_agent/server.ts",
-    "updateWebhook": "ts-node ./src/conversational_agent/updateWebhook.ts"
+    "updateWebhook": "ts-node ./src/conversational_agent/updateWebhook.ts",
+    "test": "ts-node ./src/conversational_agent/test.ts"
   }
 }
