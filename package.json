@@ -40,7 +40,10 @@
     "jsdom": "^24.0.0",
     "openai": "^4.24.3",
     "postmark": "^4.0.5",
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "i18next": "^23.16.5",
+    "i18next-fs-backend": "^2.3.2",
+    "i18next-http-middleware": "^3.6.0"
   },
   "scripts": {
     "build": "npx tsc",

@@ -4,7 +4,22 @@ import * as postmark from 'postmark';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import path from 'path';
+import i18next from 'i18next';
+import fsBackend from 'i18next-fs-backend';
+import i18nextMiddleware from 'i18next-http-middleware';
 
+i18next
+    .use(fsBackend) // Use file system backend for translations
+    .use(i18nextMiddleware.LanguageDetector) // Detect user's language
+    .init({
+        lng: 'en', // Default language
+        fallbackLng: 'en', // Fallback language
+        preload: ['en', 'fr'], // Preload languages
+        backend: {
+            loadPath: path.join(__dirname, '/locales/{{lng}}/index.json'), // Path to your translation files
+        },
+        saveMissing: true, // If you want to save missing translations
+    });
 
 // Load environment variables
 dotenv.config();
@@ -21,6 +36,9 @@ const senderEmail = process.env.DEFAULT_POSTMARK_EMAIL;
 const client = new postmark.ServerClient(process.env.POSTMARK_API_KEY as string);
 // Initialize Postmark with environment variables
 const supabase = createClient(process.env.SUPABASE_URL as string, process.env.SUPABASE_ANON_KEY as string);
+
+// Add i18next middleware to the Express app
+app.use(i18nextMiddleware.handle(i18next));
 
 // Tells Express to serve all files in the current directory (and any subdirectories) as static files.
 app.use(express.static(path.join(__dirname)));
