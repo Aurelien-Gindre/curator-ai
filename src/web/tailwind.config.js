@@ -15,7 +15,7 @@ module.exports = {
     },
     fontFamily: {
       magnolia: ['Magnolia', 'sans-serif'],
-      sans : ['Roboto','sans-serif']
+      sans : ['ui-sans-serif','system-ui','sans-serif',"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"]
     },
   },
   plugins: [],
