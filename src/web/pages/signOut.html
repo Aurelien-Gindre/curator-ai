@@ -7,28 +7,29 @@
     <title>Curator AI</title>
     <link href="../output.css" rel="stylesheet">
     <script src="../adapt.js"></script>
-    <script src="../signOut.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.0/dist/umd/i18next.min.js"></script>
 </head>
 
-<body class="font-sans text-lg mx-auto">
+<body class="font-sans text-lg mx-auto flex flex-col min-h-screen">
     <!-- Navigation Bar -->
-    <nav class="bg-grey relative bg-grey mb-14 p-2 flex justify-center">
-        <div class="absolute left-4">
+    <nav class="mt-1 mb-14 p-2 flex justify-center items-center relative">
+        <div class="absolute left-12 flex items-center">
             <!-- Buttons for choosing the language -->
-            <ul class="flex ml-10 space-x-4">
+            <ul class="flex space-x-4">
                 <!-- Button for switching language to English -->
-                <li class="hover:underline" data-lang="en" aria-label="Change language to english"><a
-                        href="/en/signOut.html" lang="en" onclick="changeLanguage('en')">EN</a></li>
+                <li class="hover:underline" data-lang="en" aria-label="Change language to english"><a lang="en"
+                        onclick="changeLanguage('en')">EN</a></li>
                 <li>|</li>
-                <!-- Button for switching language to French -->
-                <li class="hover:underline" data-lang="fr" aria-label="Changer la langue en français"><a
-                        href="/fr/signOut.html" lang="fr" onclick="changeLanguage('fr')">FR</a></li>
+                <!-- Button for switching language to Fernch -->
+                <li class="hover:underline" data-lang="fr" aria-label="Changer la langue en français"><a lang="fr"
+                        onclick="changeLanguage('fr')">FR</a></li>
             </ul>
         </div>
         <!-- Title of the webpage -->
         <!-- Links to Home page -->
         <div class="font-magnolia text-6xl text-center flex-grow">
-            <button aria-label="Page principale" onclick="goToMain()">
+            <button class="transition duration-100 hover:brightness-95 bg-white rounded-full p-3 pr-7 pl-7"
+                aria-label="Homepage" onclick="goToMain()">
                 <h1>
                     <span class="text-light_blue">Curator</span>
                     <span class="text-mid_blue">AI</span>
@@ -39,17 +40,18 @@
 
     <!-- Form for unsubscribe -->
     <div class="container mx-auto text-center">
-        <h2 class="font-bold m-10">Enter the email address you want to unsubscribe:</h2>
+        <h2 class="font-bold m-10" data-i18n="EnterEmail" aria-live="polite">Enter the email address you want to
+            unsubscribe:</h2>
         <form onsubmit="deleteEmail(event)" method="POST">
             <!-- Enter Email -->
-            <label for="email">Email: </label>
+            <label for="email" data-i18n="Email" aria-live="polite"></label>
             <input type="email" id="email" name="email" required
                 class="border border-gray-300 bg-white p-2 rounded-md text-lg text-gray-700 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200">
             <div>
                 <!-- Button to delete -->
                 <button
                     class="bg-light_blue text-white font-bold rounded-full p-2 m-10 text-center hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
-                    type="submit">Remove</button>
+                    type="submit" data-i18n="Remove" aria-live="polite"></button>
             </div>
         </form>
     </div>

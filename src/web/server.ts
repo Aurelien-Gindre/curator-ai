@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 
 // Route for the root page, i.e. the Home page in english
 app.get('/', (req, res) => {
-    res.redirect('/en/index.html');
+    res.redirect('/pages/index.html');
 });
 
 // Route to handle email submission

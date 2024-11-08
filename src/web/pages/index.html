@@ -44,70 +44,77 @@
 
     <div class="container mx-auto text-center flex-grow">
         <!-- Begin Hero Unit -->
-        <h2 class="text-6xl font-bold mb-2">An AI-powered tool</h2>
-        <h2 class="text-6xl font-bold mb-4">to be the best informed</h2>
-        <h2 class="text-lg text-gray-500 mb-2">Want to stay updated on your favorite topics?</h2>
-        <h2 class="text-lg text-gray-500 mb-2">Not enough time to read all your newsletters?</h2>
-        <h2 class="text-lg text-gray-500 mb-2">Want to save time on your research?</h2>
-        <h2 class="text-lg text-gray-500 font-bold mb-2">CURATOR AI is made for you!</h2>
+        <h2 class="text-6xl font-bold mb-2" data-i18n="HeroUnit1" aria-live="polite"></h2>
+        <h2 class="text-6xl font-bold mb-4" data-i18n="HeroUnit2" aria-live="polite"></h2>
+        <h2 class="text-lg text-gray-500 mb-2" data-i18n="HeroUnit3" aria-live="polite"></h2>
+        <h2 class="text-lg text-gray-500 mb-2" data-i18n="HeroUnit4" aria-live="polite"></h2>
+        <h2 class="text-lg text-gray-500 mb-2" data-i18n="HeroUnit5" aria-live="polite"></h2>
+        <h2 class="text-lg text-gray-500 font-bold mb-2" data-i18n="HeroUnit6" aria-live="polite"></h2>
         <!-- Button for sign up -->
         <div>
             <button
                 class="transition duration-100 text-3xl bg-light_blue text-white font-bold rounded-full p-3 pr-7 pl-7 m-10 text-center hover:scale-110 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
-                onclick="signUp()" aria-label="Sign Up" data-i18n="→ TryIt" aria-live="polite">→ Try it now!</button>
+                onclick="signUp()" aria-label="Sign Up" data-i18n="TryIt" aria-live="polite"></button>
         </div>
         <!-- End Hero Unit -->
     </div>
     <div class="h-fit">
         <!-- Separator -->
         <div class="bg-gray-50 w-screen p-10 text-center mt-20 relative">
-            <h2 class="text-4xl font-bold mb-5">Your personalized news curator</h2>
-            <h2 class=" mb-4">Set your email preferences and receive a newsletter that <b>suits you!</b></h2>
-            <img class="mx-auto w-1/3 mt-2" src="../locales/img/Sample image.png"
+            <h2 class="text-4xl font-bold mb-5" data-i18n="Expln1" aria-live="polite"></h2>
+            <h2 class=" mb-4" data-i18n="Expln2" aria-live="polite"></h2>
+            <img data-i18n="ImgSampleAlt" aria-live="polite" class="mx-auto w-1/3 mt-2"
+                src="../locales/img/Sample image.png"
                 alt="Picture of a sample email. Each news has a title and a brief descritpion maid by the AI">
-            <!-- TODO  manage the alt for language -->
         </div>
-        <!-- Add an image of a received email here when it works. -->
 
         <div class="w-screen text-center mt-20">
-            <h2 class="text-4xl font-bold mb-5">How does Curator AI works ?</h2>
-            <p class="mb-2">Curator AI is mainly powered by the OpenAI API. </p>
-            <p>You recieve an email after subscribing to the service to configure the curator to your preferences. </p>
-            <p class="mb-2">You specify themes you would like to be inform on, or simply give links ! </p>
-            <p class="mb-4">There are severable other parameters to customize </p>
-            <p class="font-medium">Create the newsletter that suits you !</p>
+            <h2 class="text-4xl font-bold mb-5" data-i18n="How" aria-live="polite"></h2>
+            <p class="mb-2" data-i18n="HowAnsw1" aria-live="polite"></p>
+            <p data-i18n="HowAnsw2" aria-live="polite"></p>
+            <p class="mb-2" data-i18n="HowAnsw3" aria-live="polite"></p>
+            <p class="mb-4" data-i18n="HowAnsw4" aria-live="polite"></p>
+            <p class="font-medium" data-i18n="HowAnsw5" aria-live="polite"></p>
             </p>
         </div>
 
 
         <div class="bg-gray-500 text-white w-screen text-center p-10 mt-20">
-            <h2 class="text-4xl font-bold mb-2">Why should I use Curator AI ?</h2>
-            <p>Are you subscribe to dozens and dozens of newsletters ?</p>
-            <p>You don't have the time to read a novel of news ?</p>
-            <p class="mb-4">You cannot find the news you are looking for ?</p>
-            <p class="font-medium">Then Curator AI is exactly what you are looking for !</p>
+            <h2 class="text-4xl font-bold mb-2" data-i18n="Why" aria-live="polite"></h2>
+            <p data-i18n="WhyAnsw1" aria-live="polite"></p>
+            <p data-i18n="WhyAnsw2" aria-live="polite"></p>
+            <p class="mb-4" data-i18n="WhyAnsw3" aria-live="polite"></p>
+            <p class="font-medium" data-i18n="WhyAnsw4" aria-live="polite"></p>
         </div>
 
 
         <div class="w-screen text-center mt-20 pb-20">
             <!-- Begin List of comments -->
-            <h2 class="text-3xl font-bold mb-2">Here are some reviews of our users :</h2>
+            <h2 class="text-3xl font-bold mb-2" data-i18n="ListComments" aria-live="polite"></h2>
             <div class="flex justify-center">
                 <div class="bg-gray-200 text-left font-semibold m-10 p-5 rounded-lg">
-                    <p>Such wow, much amaze</p>
-                    <p class="font-light text-right">- Doge</p>
+                    <p data-i18n="Comment1" aria-live="polite"></p>
+                    <p class="font-light text-right">-
+                        <a data-i18n="User1" aria-live="polite"></a>
+                    </p>
                 </div>
                 <div class="bg-gray-200 text-left font-semibold m-10 p-5 rounded-lg">
-                    <p>Much surprise, very impress</p>
-                    <p class="font-light text-right">- An impressed Doge</p>
+                    <p data-i18n="Comment2" aria-live="polite"></p>
+                    <p class="font-light text-right">-
+                        <a data-i18n="User2" aria-live="polite"></a>
+                    </p>
                 </div>
                 <div class="bg-gray-200 text-left font-semibold m-10 p-5 rounded-lg">
-                    <p>Such speed, very fast, wow</p>
-                    <p class="font-light text-right">- Shareholder Doge</p>
+                    <p data-i18n="Comment3" aria-live="polite"></p>
+                    <p class="font-light text-right">-
+                        <a data-i18n="User3" aria-live="polite"></a>
+                    </p>
                 </div>
                 <div class="bg-gray-200 text-left font-semibold m-10 p-5 rounded-lg">
-                    <p>Such coding, much smart, wow</p>
-                    <p class="font-light text-right">- An expert Doge</p>
+                    <p data-i18n="Comment4" aria-live="polite"></p>
+                    <p class="font-light text-right">-
+                        <a data-i18n="User4" aria-live="polite"></a>
+                    </p>
                 </div>
             </div>
             <!-- End List of comments -->
