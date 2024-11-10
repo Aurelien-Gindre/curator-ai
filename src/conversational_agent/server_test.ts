@@ -14,7 +14,7 @@ function countWords(text: string): number {
 }
 
 // Fonction pour envoyer un message à l'IA et permettre l'appel de fonctions
-async function chatWithAI(userMessage: string): Promise<void> {
+async function chatWithAI(userMessage: string, context: any): Promise<any> {
     try {
         // Définir la fonction accessible par l'IA, avec son schéma
         const functions = [
@@ -34,11 +34,12 @@ async function chatWithAI(userMessage: string): Promise<void> {
             }
         ];
 
-        // Envoyer le message de l'utilisateur et les fonctions disponibles
+        // Envoi du message utilisateur avec le contexte de conversation actuel
         const response = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo", // Utilisation du modèle sans la date
+            model: "gpt-3.5-turbo",
             messages: [
                 { role: "system", content: "Tu es un assistant qui peut appeler des fonctions pour obtenir des informations supplémentaires si nécessaire." },
+                ...context,  // Ajoute le contexte de la conversation
                 { role: "user", content: userMessage }
             ],
             functions,
@@ -53,22 +54,28 @@ async function chatWithAI(userMessage: string): Promise<void> {
             const params = JSON.parse(aiMessage.function_call.arguments || '{}');
             const wordCount = countWords(params.text); // Appel de la fonction en local
 
-            // Envoyer le résultat de `countWords` comme nouvelle entrée pour l'IA
-            const followUpResponse = await openai.chat.completions.create({
-                model: "gpt-3.5-turbo",
-                messages: [
-                    ...response.choices[0].message ? [response.choices[0].message] : [],
-                    { role: "function", name: "countWords", content: JSON.stringify({ wordCount }) }
-                ]
-            });
+            // Préparer la réponse pour la fonction appelée
+            const functionResponse = {
+                role: "function",
+                name: "countWords",
+                content: JSON.stringify({ wordCount })
+            };
 
-            console.log("Réponse de l'IA:", followUpResponse.choices[0].message?.content);
+            // Ajouter la réponse à la conversation et renvoyer le contexte mis à jour
+            return {
+                aiMessage: `Le nombre de mots dans votre message est : ${wordCount}`,
+                context: [...context, { role: "user", content: userMessage }, { role: "function", name: "countWords", content: JSON.stringify({ wordCount }) }]
+            };
         } else {
-            // Si aucune fonction n'est appelée, afficher la réponse normale de l'IA
-            console.log("Réponse de l'IA:", aiMessage?.content);
+            // Réponse normale de l'IA, sans appel de fonction
+            return {
+                aiMessage: aiMessage?.content || "Désolé, je n'ai pas compris votre demande.",
+                context: [...context, { role: "user", content: userMessage }, { role: "assistant", content: aiMessage?.content || "Désolé, je n'ai pas compris votre demande." }]
+            };
         }
     } catch (error) {
-        console.error("Error with OpenAI API:", error);
+        console.error("Erreur avec l'API OpenAI:", error);
+        return { aiMessage: "Une erreur est survenue, veuillez réessayer plus tard.", context };
     }
 }
 
@@ -79,21 +86,24 @@ const rl = readline.createInterface({
 });
 
 // Fonction pour poser une question dans la console
-function askQuestion() {
+async function askQuestion(context: any) {
     rl.question("Votre message: ", async (userMessage: string) => {
         if (userMessage.toLowerCase() === 'exit') { // Tapez 'exit' pour quitter
             rl.close();
             return;
         }
 
-        // Appel de l'API avec le message de l'utilisateur
-        await chatWithAI(userMessage);
+        // Appel de l'API avec le message de l'utilisateur et contexte
+        const { aiMessage, context: newContext } = await chatWithAI(userMessage, context);
 
-        // Reposer la question pour le prochain message
-        askQuestion();
+        // Afficher la réponse de l'IA
+        console.log("Réponse de l'IA:", aiMessage);
+
+        // Reposer la question pour le prochain message avec contexte mis à jour
+        askQuestion(newContext);
     });
 }
 
 // Démarrer la boucle interactive
 console.log("Bienvenue ! Tapez 'exit' pour quitter.");
-askQuestion();
+askQuestion([]);
