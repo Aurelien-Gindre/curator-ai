@@ -18,7 +18,7 @@ const links = [
 // 
 // return newsletter : String
 
-function formatNewsletterMarkdown(articles : Summary[]) {
+function formatNewsletterMarkdown(articles: Summary[]) {
 
     // Newletter's header
 
@@ -33,7 +33,7 @@ function formatNewsletterMarkdown(articles : Summary[]) {
         const summary = article.summary || "Summary not available.";
         const link = article.link || "#";
 
-        
+
         newsletter += `### ${title}\n`;
         newsletter += `*by ${author}*\n`;
         newsletter += `🔗 [Read the full article](${link})\n\n`;
@@ -43,6 +43,8 @@ function formatNewsletterMarkdown(articles : Summary[]) {
     // Footer
 
     newsletter += "\nThat's all for now! See you soon for more news!\n";
+    // Link for unsubscription
+    newsletter += "\n\nIf you no longer want to receive our email, you can unsubscribe wih : " + process.env.WEBPAGELINK + "/en/signOut.html"
 
     return newsletter;
 }
@@ -68,12 +70,15 @@ function formatNewsletterHtml(articles: Summary[]) {
         const summary = article.summary || "Summary not available.";
         const link = article.link || "#";
 
-        
+
         htmlNewsletter += '<h3>' + title + '</h3>' +
-            '<p><strong>by ' + author + '</strong></p>' +  
+            '<p><strong>by ' + author + '</strong></p>' +
             '<p><a href="' + link + '">Read the full article</a></p>' +
             '<blockquote>' + summary + '</blockquote>';
     });
+
+    // Link for unsubscription
+    htmlNewsletter += "<p>If you no longer want to receive our email, you can <a href=\"" + process.env.WEBPAGELINK + "/en/signOut.html\">unsubscribe</a> from our newsletter.</p>"
 
     return htmlNewsletter;
 }
@@ -111,6 +116,9 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
         `;
     });
 
+    // Link for unsubscription
+    htmlNewsletter += "<p>If you no longer want to receive our email, you can <a href=\"" + process.env.WEBPAGELINK + "/en/signOut.html\">unsubscribe</a> from our newsletter.</p>"
+
     htmlNewsletter += '</div>';
     return htmlNewsletter;
 }
@@ -118,8 +126,8 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
 // Uses the curate function to generate newsletter data and formats output to be used in mail
 // TODO : add parameters based on user (links,interests?,maxArticles?,maxContentSize?)
 
-export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: string, html: string }> {
-    
+export function curateAndGenerateNewsletter(): Promise<{ json: string, markdown: string, html: string }> {
+
     return curate({
         links,
         interests: ['react', 'ai'],
@@ -133,7 +141,7 @@ export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: s
 
         // Returns raw json and formatted newletters
 
-        return { curatedLinks, markdown, html};
+        return { curatedLinks, markdown, html };
 
     }).catch((err: unknown) => {
 
