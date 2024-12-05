@@ -10,5 +10,4 @@ const openai = new OpenAI({
 
 var userMail = "I would like my newsletter to be every 2 days, I have an interest in data engineering and LLMs"
 
-
 runStructuredRequest(openai, userMail)
